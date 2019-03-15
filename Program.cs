@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using csharpDemo.algo;
 namespace csharpDemo
 {
@@ -6,8 +7,24 @@ namespace csharpDemo
     {
         static void Main(string[] args)
         {
+            Stopwatch watch = new Stopwatch();
+            watch.Start();
+            // int before = 0;
+            // int after = 0;
+            // before = DateTime.Now.Millisecond;
+
+
             // MaxSequenceAlgo();
-            BinarySearchAlgo();
+            // BinarySearchAlgo();
+            // GetGcd();
+            // Pow();
+
+
+
+            watch.Stop();
+            // after = DateTime.Now.Millisecond;
+            // System.Console.WriteLine(after-before);
+            System.Console.WriteLine(watch.Elapsed.Milliseconds); 
         }
         #region 子序列
         /// <summary>
@@ -43,5 +60,22 @@ namespace csharpDemo
             System.Console.WriteLine("i:"+binarySearch.MidSearch());
         }
         #endregion
+        #region 辗转相除
+        public static void GetGcd(){
+            int n = 50;
+            int m = 15;
+            var gcd = new Gcd();
+            System.Console.WriteLine("GCD({0},{1}) = {2}",n,m,gcd.Euclidean(n,m));
+        }
+        #endregion
+        #region 幂运算
+        public static void Pow(){
+            Pow pow = new Pow();
+
+            System.Console.WriteLine(pow.GetPow(2,20)); 
+
+        }
+        #endregion
+        
     }
 }
