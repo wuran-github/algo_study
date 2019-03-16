@@ -3,7 +3,7 @@ namespace csharpDemo.ADTImplement
 {
     public class Node
     {
-        public Node Next;
+        public Node Next = null;
         public int value;
     }
 }

@@ -5,15 +5,14 @@ namespace csharpDemo.ADT
     public interface IList
     {
         bool IsEmpty();
-        bool IsLast();
-        IList Header();
+        bool IsLast(Node node);
+        Node Header();
         void PrintList();
         void MakeEmpty();
-        int Find(int value);
-        void Insert(int value,int location);
+        Node Find(int value);
+        void Insert(int value,Node p);
+        void Append(int value);
         void Delete(int value);
-        int FindKth(int location);
-        Node Next();
-        Node Previous();
+        Node FindPrevious(int value);
     }
 }
