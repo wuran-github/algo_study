@@ -68,6 +68,12 @@ namespace csharpDemo.ADTImplement
 
             return polySum;
         }
+        public PolyList Mutiply(PolyList right){
+            PolyList polyMuti = new PolyList();
+            
+
+            return polyMuti;
+        }
         public static PolyList operator +(PolyList left, PolyList right){
             return left.Add(right);
         }
