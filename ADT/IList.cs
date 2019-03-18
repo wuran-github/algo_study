@@ -2,17 +2,19 @@ using System;
 using csharpDemo.ADTImplement;
 namespace csharpDemo.ADT
 {
-    public interface IList
+    public interface IList<TNode,TVal>
     {
         bool IsEmpty();
-        bool IsLast(Node node);
-        Node Header();
+        bool IsLast(TNode node);
+        TNode Header();
         void PrintList();
         void MakeEmpty();
-        Node Find(int value);
-        void Insert(int value,Node p);
-        void Append(int value);
-        void Delete(int value);
-        Node FindPrevious(int value);
+        TNode Find(TVal value);
+        TNode Insert(TVal value,TNode p);
+        TNode Insert(TNode node,TNode p);
+        TNode Append(TVal value);
+        TNode Append(TNode node);
+        void Delete(TVal value);
+        TNode FindPrevious(TVal value);
     }
 }

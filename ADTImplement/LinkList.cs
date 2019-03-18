@@ -7,71 +7,92 @@ namespace csharpDemo.ADTImplement
     /// 书上给的方法实际上position不是位置信息，而是一个节点
     /// 也就是他只是返回来一个节点，无法通过节点知道当前是第几个元素
     /// </summary>
-    public class LinkList : IList
+    public class LinkList<T,TVal> : IList<T,TVal> where T: INode<TVal>,new()
     {
-        public Node header;
+        public T header;
         public LinkList(){
-            header = new Node();
+            header = new T();
         }
-        public void Append(int value)
+        public T Append(TVal value)
         {
-                Node n = header;
-                while(n.Next != null){
-                    n = n.Next;
-                }
-                Node newNode = new Node(){
-                    value = value
-                };
-                n.Next = newNode;
-            
+            T n = header;
+            while (n.Next != null)
+            {
+                n = (T)n.Next;
+            }
+            T newNode = new T();
+            newNode.Value = value;
+
+            n.Next = newNode;
+            return newNode;
         }
+
+        public T Append(T node)
+        {
+           T n = header;
+            while (n.Next != null)
+            {
+                n = (T)n.Next;
+            }
+            n.Next = node;
+            return node;
+        }
+
         /// <summary>
         /// 删除找到的第一个元素
         /// </summary>
         /// <param name="value"></param>
-        public void Delete(int value)
+        public void Delete(TVal value)
         {
-            Node n = FindPrevious(value);
+            T n = FindPrevious(value);
             if(n != null){
                 n.Next = n.Next.Next;
             }
         }
 
-        public Node Find(int value)
+        public T Find(TVal value)
         {
-            Node n = header.Next;
-            while(n != null && n.value != value){
-                n = n.Next;
+            T n = (T)header.Next;
+            while(n != null && n.Value.Equals(value)){
+                n =(T)n.Next;
             }
             return n;
         }
 
-        public Node FindPrevious(int value)
+        public T FindPrevious(TVal value)
         {
-            Node n = header;
-            while(n.Next != null && n.Next.value != value){
-                n = n.Next;
+            T n = header;
+            while(n.Next != null && n.Next.Value.Equals(value)){
+                n = (T)n.Next;
             }
             return n;
         }
 
-        public Node Header()
+        public T Header()
         {
             return header;
         }
 
         /// <summary>
-        /// 在p之后插入
+        /// 在p之后插入,返回新插入的元素
         /// </summary>
         /// <param name="value"></param>
         /// <param name="p"></param>
-        public void Insert(int value, Node p)
+        public T Insert(TVal value, T p)
         {
-           Node n = new Node(){
-               value = value
+           T n = new T(){
+               Value = value
            };
            n.Next = p.Next;
            p.Next = n;
+           return n;
+        }
+
+        public T Insert(T node, T p)
+        {
+            node.Next = p.Next;
+            p.Next = node;
+            return node;
         }
 
         public bool IsEmpty()
@@ -79,7 +100,7 @@ namespace csharpDemo.ADTImplement
             return header.Next == null;
         }
 
-        public bool IsLast(Node node)
+        public bool IsLast(T node)
         {
            return node.Next == null;
         }
@@ -92,10 +113,10 @@ namespace csharpDemo.ADTImplement
 
         public void PrintList()
         {
-           Node n = header.Next;
+           T n = (T)header.Next;
            while(n != null){
-               System.Console.WriteLine(n.value);
-               n = n.Next;
+               System.Console.WriteLine(n.ToString());
+               n = (T)n.Next;
            }
         }
         //实际上位置信息应该是在链表中

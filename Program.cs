@@ -23,7 +23,8 @@ namespace csharpDemo
             
 
             // 表
-            ListAlgo();
+            //ListAlgo();
+            PolynomialList();
 
 
 
@@ -92,7 +93,7 @@ namespace csharpDemo
     #endregion 
     #region 表
         public static void ListAlgo(){
-            IList list = new LinkList();
+            IList<Node,int> list = new LinkList<Node,int>();
             list.Append(1);
             list.Append(2);
             Node node = list.FindPrevious(1);
@@ -101,6 +102,43 @@ namespace csharpDemo
             // System.Console.WriteLine("delete");
             // list.Delete(3);
             // list.PrintList();
+        }
+        public static void PolynomialList(){
+            //左边是系数，右边是次幂
+            string[] leftPolys = {"2,1492","10,1000","5,14","5,1","1,0"};
+            string[] rightPolys = {"3,1990","-2,1492","11,1","5,0"};
+            PolyList left = new PolyList();
+            PolyList right = new PolyList();
+            foreach (var poly in leftPolys)
+            {
+                string[] param = poly.Split(',');
+                int coefficient = int.Parse(param[0]);
+                int exponent = int.Parse(param[1]);
+
+                PolyNode node = new PolyNode();
+
+                node.Polynomial.Coefficient = coefficient;
+                node.Polynomial.Exponent = exponent;
+
+                left.Append(node);
+            }
+
+             foreach (var poly in rightPolys)
+            {
+                string[] param = poly.Split(',');
+                int coefficient = int.Parse(param[0]);
+                int exponent = int.Parse(param[1]);
+
+                PolyNode node = new PolyNode();
+
+                node.Polynomial.Coefficient = coefficient;
+                node.Polynomial.Exponent = exponent;
+
+                right.Append(node);
+            }
+
+            PolyList sum = left + right;
+            sum.PrintList();
         }
     #endregion
     }
