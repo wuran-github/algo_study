@@ -25,6 +25,8 @@ namespace csharpDemo.ADTImplement
                     {
                         PolyNode temp = polySum.Append(rightNode.Value);
                         temp.Polynomial.Coefficient = rightNode.Polynomial.Coefficient;
+
+                        rightNode = (PolyNode)rightNode.Next;
                     }
                 }
                 //当大于
@@ -68,14 +70,42 @@ namespace csharpDemo.ADTImplement
 
             return polySum;
         }
-        public PolyList Mutiply(PolyList right){
+        public PolyList Multiply(PolyList right){
             PolyList polyMuti = new PolyList();
-            
+             PolyNode rightNode = (PolyNode)right.Header().Next;
+            PolyNode leftNode = (PolyNode)this.Header().Next;
+
+            while (leftNode != null)
+            {
+                //临时多项式
+                PolyList tempPoly = new PolyList();
+
+                PolyNode tempRightNode = rightNode;
+                while(tempRightNode != null){
+                    //次数，相加
+                    int value = leftNode.Value+tempRightNode.Value;
+                    //系数，相乘
+                    int coefficient = leftNode.Polynomial.Coefficient*tempRightNode.Polynomial.Coefficient;
+
+                    //把单项式插入多项式中
+                    PolyNode tempNode = tempPoly.Append(value);
+                    tempNode.Polynomial.Coefficient = coefficient;
+
+                    tempRightNode = (PolyNode)tempRightNode.Next;
+                }
+                //循环结束代表一次乘法完成了，把临时多项式加到结果多项式中
+                polyMuti = polyMuti + tempPoly;
+
+                leftNode =  (PolyNode)leftNode.Next;
+            }
 
             return polyMuti;
         }
         public static PolyList operator +(PolyList left, PolyList right){
             return left.Add(right);
+        }
+        public static PolyList operator *(PolyList left, PolyList right){
+            return left.Multiply(right);
         }
     }
 }

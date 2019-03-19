@@ -105,8 +105,12 @@ namespace csharpDemo
         }
         public static void PolynomialList(){
             //左边是系数，右边是次幂
+            // string[] leftPolys = {"2,1492","10,1000","5,14","5,1","1,0"};
+            // string[] rightPolys = {"3,1990","-2,1492","11,1","5,0"};
             string[] leftPolys = {"2,1492","10,1000","5,14","5,1","1,0"};
             string[] rightPolys = {"3,1990","-2,1492","11,1","5,0"};
+            
+            
             PolyList left = new PolyList();
             PolyList right = new PolyList();
             foreach (var poly in leftPolys)
@@ -139,6 +143,9 @@ namespace csharpDemo
 
             PolyList sum = left + right;
             sum.PrintList();
+            System.Console.WriteLine("multiply:");
+            PolyList multi = left * right;
+            multi.PrintList();
         }
     #endregion
     }
