@@ -3,6 +3,7 @@ using System.Diagnostics;
 using csharpDemo.algo;
 using csharpDemo.ADT;
 using csharpDemo.ADTImplement;
+using System.Linq;
 namespace csharpDemo
 {
     class Program
@@ -24,7 +25,8 @@ namespace csharpDemo
 
             // 表
             //ListAlgo();
-            PolynomialList();
+            //PolynomialList();
+            RadixSortTest();
 
 
 
@@ -146,6 +148,18 @@ namespace csharpDemo
             System.Console.WriteLine("multiply:");
             PolyList multi = left * right;
             multi.PrintList();
+        }
+        public static void RadixSortTest(){
+            int[] array ={64,8,216,512,27,729,0,1,343,125};
+            int[] array2 = {278,109,63,930,589,184,505,269,8,83};
+            int[] array3 = array.Union(array2).ToArray();
+            int[] result = null;
+            int m = 3;
+            RadixSort sort = new RadixSort();
+            result = sort.Sort(array3,m);
+            foreach(int num in result){
+                System.Console.Write(num+" ");
+            }
         }
     #endregion
     }
