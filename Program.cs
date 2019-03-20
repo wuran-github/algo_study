@@ -211,5 +211,8 @@ namespace csharpDemo
             math.PrintList();
         }
     #endregion
+    #region 栈（stack)
+    
+    #endregion
     }
 }

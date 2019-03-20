@@ -10,7 +10,6 @@ namespace csharpDemo.ADTImplement
         public string Value { get => Name; set => Name = value; }
         public string Name { get; set; }
         public string Teacher { get; set; }
-        public StudentList Student{get;set;} = null;
         public override String ToString(){
             return "name:"+Name+",teacher:"+Teacher;
         }
