@@ -26,7 +26,8 @@ namespace csharpDemo
             // 表
             //ListAlgo();
             //PolynomialList();
-            RadixSortTest();
+            //RadixSortTest();
+            MultiList();
 
 
 
@@ -98,7 +99,7 @@ namespace csharpDemo
             IList<Node,int> list = new LinkList<Node,int>();
             list.Append(1);
             list.Append(2);
-            Node node = list.FindPrevious(1);
+            Node node = (Node)list.FindPrevious(1);
             list.Insert(3,node);
             list.PrintList();
             // System.Console.WriteLine("delete");
@@ -160,6 +161,54 @@ namespace csharpDemo
             foreach(int num in result){
                 System.Console.Write(num+" ");
             }
+        }
+        public static void MultiList(){
+            StudentList mary = new StudentList(){
+                Name = "mary",
+                Age = 11
+            };
+            StudentList mike = new StudentList(){
+                Name = "mike",
+                Age = 12
+            };
+            StudentList john = new StudentList(){
+                Name = "john",
+                Age = 13
+            };
+            CourseList chinese = new CourseList(){
+                Name = "Chinese",
+                Teacher = "欧阳胜利"
+            };
+            CourseList english = new CourseList(){
+                Name = "English",
+                Teacher = "东方建设"
+            };
+            CourseList math = new CourseList(){
+                Name = "Math",
+                Teacher = "西门建国"
+            };
+
+            chinese.Enroll(mary);
+            chinese.Enroll(mike);
+            chinese.Enroll(john);
+
+            english.Enroll(mike);
+
+            math.Enroll(mary);
+            math.Enroll(john);
+
+            System.Console.WriteLine("mary:");
+            mary.PrintList();
+            System.Console.WriteLine("mike:");
+            mike.PrintList();
+            System.Console.WriteLine("john:");
+            john.PrintList();
+            System.Console.WriteLine("chinese:");
+            chinese.PrintList();
+            System.Console.WriteLine("english:");
+            english.PrintList();
+            System.Console.WriteLine("math:");
+            math.PrintList();
         }
     #endregion
     }

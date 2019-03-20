@@ -6,7 +6,7 @@ namespace csharpDemo.ADT
     {
         bool IsEmpty();
         bool IsLast(TNode node);
-        TNode Header();
+        INode<TVal> Header();
         void PrintList();
         void MakeEmpty();
         TNode Find(TVal value);
@@ -15,6 +15,6 @@ namespace csharpDemo.ADT
         TNode Append(TVal value);
         TNode Append(TNode node);
         void Delete(TVal value);
-        TNode FindPrevious(TVal value);
+        INode<TVal> FindPrevious(TVal value);
     }
 }

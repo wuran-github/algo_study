@@ -9,13 +9,13 @@ namespace csharpDemo.ADTImplement
     /// </summary>
     public class LinkList<T,TVal> : IList<T,TVal> where T: INode<TVal>,new()
     {
-        public T header;
+        public Header<TVal> header;
         public LinkList(){
-            header = new T();
+            header = new Header<TVal>();
         }
         public T Append(TVal value)
         {
-            T n = header;
+            INode<TVal> n = header;
             while (n.Next != null)
             {
                 n = (T)n.Next;
@@ -29,7 +29,7 @@ namespace csharpDemo.ADTImplement
 
         public T Append(T node)
         {
-           T n = header;
+           INode<TVal> n = header;
             while (n.Next != null)
             {
                 n = (T)n.Next;
@@ -44,7 +44,7 @@ namespace csharpDemo.ADTImplement
         /// <param name="value"></param>
         public void Delete(TVal value)
         {
-            T n = FindPrevious(value);
+            INode<TVal> n = FindPrevious(value);
             if(n != null){
                 n.Next = n.Next.Next;
             }
@@ -59,16 +59,16 @@ namespace csharpDemo.ADTImplement
             return n;
         }
 
-        public T FindPrevious(TVal value)
+        public INode<TVal> FindPrevious(TVal value)
         {
-            T n = header;
+            INode<TVal> n = header;
             while(n.Next != null && n.Next.Value.Equals(value)){
                 n = (T)n.Next;
             }
             return n;
         }
 
-        public T Header()
+        public INode<TVal> Header()
         {
             return header;
         }
