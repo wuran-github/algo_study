@@ -49,11 +49,15 @@ namespace csharpDemo.ADTImplement
                 n.Next = n.Next.Next;
             }
         }
-
+        /// <summary>
+        /// 找不到返回null
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public T Find(TVal value)
         {
             T n = (T)header.Next;
-            while(n != null && n.Value.Equals(value)){
+            while(n != null && !n.Value.Equals(value)){
                 n =(T)n.Next;
             }
             return n;

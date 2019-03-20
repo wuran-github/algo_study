@@ -14,12 +14,20 @@ namespace csharpDemo.ADTImplement
         {
             return "name:" + Name + ",Age:" + Age;
         }
-
+        public void CopyProperty(StudentList student){
+            this.Age = student.Age;
+        }
         public CourseList Enroll(CourseList course)
         {
-            this.Append(course);
-            course.Append(this);
-            return course;
+            CourseList individualCourse = null;
+            //不存在才插入
+            if(this.Find(course.Value) == null){
+                individualCourse = this.Append(course.Value);
+                individualCourse.CopyProperty(course);
+                var individualStudent = course.Append(this.Value);
+                individualStudent.CopyProperty(this);
+            }
+            return individualCourse;
         }
     }
 }
