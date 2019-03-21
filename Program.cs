@@ -27,10 +27,16 @@ namespace csharpDemo
             //ListAlgo();
             //PolynomialList();
             //RadixSortTest();
-            MultiList();
+            //MultiList();
 
-
-
+            //栈
+            //StackTest();
+            // StackArrayTest();
+            // BalanceSymbolTest();
+            // PostfixTest();
+            // InfixToPostfixTest();
+            infixAndPostfixTest();
+            
             watch.Stop();
             // after = DateTime.Now.Millisecond;
             // System.Console.WriteLine(after-before);
@@ -212,7 +218,47 @@ namespace csharpDemo
         }
     #endregion
     #region 栈（stack)
-    
+        public static void StackTest(){
+            Stack<Node,int> stack = new Stack<Node,int>();
+            stack.Push(1);
+            stack.Push(2);
+            stack.Push(3);
+            System.Console.WriteLine(stack.Pop().ToString());
+            System.Console.WriteLine(stack.Pop().ToString());
+            System.Console.WriteLine(stack.Pop().ToString());
+        }
+        public static void StackArrayTest(){
+            IStack<int> stack = new Stack<Node,int>();
+            stack.Push(1);
+            stack.Push(2);
+            stack.Push(3);
+            System.Console.WriteLine(stack.Pop().ToString());
+            System.Console.WriteLine(stack.Pop().ToString());
+            System.Console.WriteLine(stack.Pop().ToString());
+        }
+        public static void BalanceSymbolTest(){
+            BalanceSymbol balanceSymbol = new BalanceSymbol();
+            balanceSymbol.Run();
+        }
+        public static void PostfixTest(){
+            Postfix postfix = new Postfix();
+            postfix.run();
+        }
+        public static void InfixToPostfixTest(){
+            InfixToPostfix infix = new InfixToPostfix();
+            infix.Translate();
+        }
+        /// <summary>
+        /// 将infix转换为postfix后进行计算
+        /// </summary>
+        public static void infixAndPostfixTest(){
+            char[] infixArray = "4+4/2+(4*5-2^(2^2))*1".ToCharArray();
+            InfixToPostfix infix = new InfixToPostfix();
+            Postfix postfix = new Postfix();
+            string[] postfixArray = infix.Translate(infixArray);
+            string result = postfix.GetResult(postfixArray);
+            System.Console.WriteLine(result);
+        }
     #endregion
     }
 }
