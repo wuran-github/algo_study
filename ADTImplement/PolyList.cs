@@ -23,7 +23,7 @@ namespace csharpDemo.ADTImplement
                 {
                     while (rightNode != null)
                     {
-                        PolyNode temp = polySum.Append(rightNode.Value);
+                        PolyNode temp = (PolyNode)polySum.Append(rightNode.Value);
                         temp.Polynomial.Coefficient = rightNode.Polynomial.Coefficient;
 
                         rightNode = (PolyNode)rightNode.Next;
@@ -33,7 +33,7 @@ namespace csharpDemo.ADTImplement
                 else if (leftNode.Value > rightNode.Value)
                 {
 
-                    PolyNode temp = polySum.Append(leftNode.Value);
+                    PolyNode temp = (PolyNode)polySum.Append(leftNode.Value);
                     temp.Polynomial.Coefficient = leftNode.Polynomial.Coefficient;
 
                     leftNode = (PolyNode)leftNode.Next;
@@ -45,7 +45,7 @@ namespace csharpDemo.ADTImplement
                     //为0就不需要插入元素了
                     if (coefficient != 0)
                     {
-                        PolyNode temp = polySum.Append(leftNode.Value);
+                        PolyNode temp = (PolyNode)polySum.Append(leftNode.Value);
                         temp.Polynomial.Coefficient = coefficient;
 
                     }
@@ -59,7 +59,7 @@ namespace csharpDemo.ADTImplement
                     leftNode = rightNode;
                     rightNode = temp;
 
-                    PolyNode tempNode = polySum.Append(leftNode.Value);
+                    PolyNode tempNode = (PolyNode)polySum.Append(leftNode.Value);
                     tempNode.Polynomial.Coefficient = leftNode.Polynomial.Coefficient;
 
                     leftNode = (PolyNode)leftNode.Next;
@@ -88,7 +88,7 @@ namespace csharpDemo.ADTImplement
                     int coefficient = leftNode.Polynomial.Coefficient*tempRightNode.Polynomial.Coefficient;
 
                     //把单项式插入多项式中
-                    PolyNode tempNode = tempPoly.Append(value);
+                    PolyNode tempNode = (PolyNode)tempPoly.Append(value);
                     tempNode.Polynomial.Coefficient = coefficient;
 
                     tempRightNode = (PolyNode)tempRightNode.Next;

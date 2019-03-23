@@ -35,8 +35,11 @@ namespace csharpDemo
             // BalanceSymbolTest();
             // PostfixTest();
             // InfixToPostfixTest();
-            infixAndPostfixTest();
+            // infixAndPostfixTest();
             
+            //队列
+            QueueTest();
+
             watch.Stop();
             // after = DateTime.Now.Millisecond;
             // System.Console.WriteLine(after-before);
@@ -259,6 +262,23 @@ namespace csharpDemo
             string result = postfix.GetResult(postfixArray);
             System.Console.WriteLine(result);
         }
+    #endregion
+    #region 队列（queue)
+        public static void QueueTest(){
+            IQueue<int> queue = new Queue<Node,int>(3);
+            System.Console.WriteLine(queue.IsEmpty());
+            queue.Enqueue(1);
+            queue.Enqueue(2);
+            queue.Enqueue(3);
+
+            for(int i = 0 ;i < 3; i++){
+                
+                System.Console.WriteLine(queue.Dequeue()?.Value);
+            }
+            queue.Enqueue(4);
+            queue.Enqueue(5);
+            queue.Enqueue(6);
+        } 
     #endregion
     }
 }

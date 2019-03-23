@@ -22,9 +22,9 @@ namespace csharpDemo.ADTImplement
             CourseList individualCourse = null;
             //不存在才插入
             if(this.Find(course.Value) == null){
-                individualCourse = this.Append(course.Value);
+                individualCourse = (CourseList)this.Append(course.Value);
                 individualCourse.CopyProperty(course);
-                var individualStudent = course.Append(this.Value);
+                var individualStudent = (StudentList)course.Append(this.Value);
                 individualStudent.CopyProperty(this);
             }
             return individualCourse;

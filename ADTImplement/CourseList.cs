@@ -21,9 +21,9 @@ namespace csharpDemo.ADTImplement
             StudentList individualStudent = null;
             //不存在才插入
             if(this.Find(student.Value) == null){
-                individualStudent = this.Append(student.Value);
+                individualStudent = (StudentList)this.Append(student.Value);
                 individualStudent.CopyProperty(student);
-                var individualCourse = student.Append(this.Value);
+                var individualCourse = (CourseList)student.Append(this.Value);
                 individualCourse.CopyProperty(this);
             }
             return individualStudent;

@@ -12,8 +12,8 @@ namespace csharpDemo.algo
         /// <param name="m">最大位数</param>
         public int[] Sort(int[] array, int m)
         {
-            IList<Node, int> finalList = new LinkList<Node, int>();
-            IList<Node, int>[] tempLists = new LinkList<Node, int>[10];
+            IList<int> finalList = new LinkList<Node, int>();
+            IList<int>[] tempLists = new LinkList<Node, int>[10];
             int[] tempArray = array;
             for (int i = 0; i < 10; i++)
             {

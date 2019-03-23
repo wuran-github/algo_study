@@ -7,27 +7,27 @@ namespace csharpDemo.ADTImplement
     /// 书上给的方法实际上position不是位置信息，而是一个节点
     /// 也就是他只是返回来一个节点，无法通过节点知道当前是第几个元素
     /// </summary>
-    public class LinkList<T,TVal> : IList<T,TVal> where T: INode<TVal>,new()
+    public class LinkList<T,TVal> : IList<TVal> where T: INode<TVal>,new()
     {
         public Header<TVal> header;
         public LinkList(){
             header = new Header<TVal>();
         }
-        public T Append(TVal value)
+        public  INode<TVal> Append(TVal value)
         {
             INode<TVal> n = header;
             while (n.Next != null)
             {
-                n = (T)n.Next;
+                n = n.Next;
             }
-            T newNode = new T();
+            INode<TVal> newNode = new T();
             newNode.Value = value;
 
             n.Next = newNode;
             return newNode;
         }
 
-        public T Append(T node)
+        public  INode<TVal> Append( INode<TVal> node)
         {
            INode<TVal> n = header;
             while (n.Next != null)
@@ -54,11 +54,11 @@ namespace csharpDemo.ADTImplement
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public T Find(TVal value)
+        public  INode<TVal> Find(TVal value)
         {
-            T n = (T)header.Next;
+             INode<TVal> n = header.Next;
             while(n != null && !n.Value.Equals(value)){
-                n =(T)n.Next;
+                n =n.Next;
             }
             return n;
         }
@@ -67,7 +67,7 @@ namespace csharpDemo.ADTImplement
         {
             INode<TVal> n = header;
             while(n.Next != null && n.Next.Value.Equals(value)){
-                n = (T)n.Next;
+                n = n.Next;
             }
             return n;
         }
@@ -82,9 +82,9 @@ namespace csharpDemo.ADTImplement
         /// </summary>
         /// <param name="value"></param>
         /// <param name="p"></param>
-        public T Insert(TVal value, T p)
+        public  INode<TVal> Insert(TVal value,  INode<TVal> p)
         {
-           T n = new T(){
+            INode<TVal> n = new T(){
                Value = value
            };
            n.Next = p.Next;
@@ -92,7 +92,7 @@ namespace csharpDemo.ADTImplement
            return n;
         }
 
-        public T Insert(T node, T p)
+        public  INode<TVal> Insert( INode<TVal> node,  INode<TVal> p)
         {
             node.Next = p.Next;
             p.Next = node;
@@ -104,7 +104,7 @@ namespace csharpDemo.ADTImplement
             return header.Next == null;
         }
 
-        public bool IsLast(T node)
+        public bool IsLast(INode<TVal> node)
         {
            return node.Next == null;
         }
@@ -117,10 +117,10 @@ namespace csharpDemo.ADTImplement
 
         public void PrintList()
         {
-           T n = (T)header.Next;
+           INode<TVal> n = header.Next;
            while(n != null){
                System.Console.WriteLine(n.ToString());
-               n = (T)n.Next;
+               n = n.Next;
            }
         }
         //实际上位置信息应该是在链表中
