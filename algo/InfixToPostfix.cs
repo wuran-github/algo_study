@@ -50,6 +50,7 @@ namespace csharpDemo.algo
                     }
                     catch (Exception e)
                     {
+                        System.Console.WriteLine(e.Message);
                         System.Console.WriteLine("输入数组不正确");
                         return null;
                     }

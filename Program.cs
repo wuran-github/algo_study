@@ -38,7 +38,10 @@ namespace csharpDemo
             // infixAndPostfixTest();
             
             //队列
-            QueueTest();
+            // QueueTest();
+            
+            //树
+            DirectoryTreeTest();
 
             watch.Stop();
             // after = DateTime.Now.Millisecond;
@@ -105,7 +108,7 @@ namespace csharpDemo
     #endregion 
     #region 表
         public static void ListAlgo(){
-            IList<Node,int> list = new LinkList<Node,int>();
+            IList<int> list = new LinkList<Node,int>();
             list.Append(1);
             list.Append(2);
             Node node = (Node)list.FindPrevious(1);
@@ -279,6 +282,14 @@ namespace csharpDemo
             queue.Enqueue(5);
             queue.Enqueue(6);
         } 
+    #endregion
+    #region 树
+        public static void DirectoryTreeTest(){
+            FileTree tree = new FileTree();
+            tree.test();
+            // tree.ListDir();
+            tree.ListDirByPost();
+        }
     #endregion
     }
 }
