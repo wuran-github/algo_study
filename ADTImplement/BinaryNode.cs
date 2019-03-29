@@ -3,14 +3,17 @@ using csharpDemo.ADT;
 
 namespace csharpDemo.ADTImplement
 {
-    public class BinaryNode<T>:IBinaryTreeNode<T>
+    public class BinaryNode<T>:IBinaryNode<T>
     {
         public BinaryNode()
         {
         }
 
         public T Value { get ; set ; } = default(T);
-        public IBinaryTreeNode<T> Left { get ; set ; } = null;
-        public IBinaryTreeNode<T> Right { get ; set ; } = null;
+        public IBinaryNode<T> Left { get ; set ; } = null;
+        public IBinaryNode<T> Right { get ; set ; } = null;
+        public override string ToString(){
+            return Value.ToString();
+        }
     }
 }

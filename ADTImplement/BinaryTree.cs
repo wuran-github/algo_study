@@ -5,23 +5,62 @@ namespace csharpDemo.ADTImplement
 {
     public class BinaryTree<T>
     {
-        BinaryNode<T> root;
+        IBinaryNode<T> root;
         public BinaryTree()
         {
             root = new BinaryNode<T>();
             
         }
-        public void TestPostfix(){
-            string[] testArray = null;
-            testArray = new string[] { "6", "5", "2", "3", "+", "8", "*", "+", "3", "+", "*" };
+        public void SetRoot(IBinaryNode<T> root){
+            this.root = root;
         }
-        
-        void PostFixToTree(string[] array){
-            IStack<BinaryNode<T>> stack = new Stack<NormalNode<BinaryNode<T>>,BinaryNode<T>>();
-            foreach(string element in array){
-                
+        /// <summary>
+        /// 后序遍历，左右根
+        /// </summary>
+        public void Postorder(){
+            PrintByPostorder(root);
+        }
+        void PrintByPostorder(IBinaryNode<T> node){
+            if(node == null){
+                return ;
             }
+            var left = node.Left;
+            var right = node.Right;
+            PrintByPostorder(left);
+            PrintByPostorder(right);
+            System.Console.Write(" "+node.ToString());
         }
-
+        /// <summary>
+        /// 先序遍历，根左右
+        /// </summary>
+        public void Preorder(){
+            PrintByPreorder(root);
+        }
+        void PrintByPreorder(IBinaryNode<T> node){
+            if(node == null){
+                return ;
+            }
+            var left = node.Left;
+            var right = node.Right;
+            System.Console.Write(" "+node.ToString());
+            PrintByPostorder(left);
+            PrintByPostorder(right);
+        }
+        /// <summary>
+        /// 中序遍历，左根右
+        /// </summary>
+        public void Inorder(){
+            PrintByInorder(root);
+        }
+        void PrintByInorder(IBinaryNode<T> node){
+            if(node == null){
+                return ;
+            }
+            var left = node.Left;
+            var right = node.Right;
+            PrintByPostorder(left);
+            System.Console.Write(" "+node.ToString());
+            PrintByPostorder(right);
+        }
     }
 }

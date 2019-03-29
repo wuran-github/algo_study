@@ -41,8 +41,13 @@ namespace csharpDemo
             // QueueTest();
             
             //树
-            DirectoryTreeTest();
+            // DirectoryTreeTest();
+            // BinaryTreeTest();
+            BinarySearchTreeDeleteTest();
 
+
+
+            
             watch.Stop();
             // after = DateTime.Now.Millisecond;
             // System.Console.WriteLine(after-before);
@@ -289,6 +294,43 @@ namespace csharpDemo
             tree.test();
             // tree.ListDir();
             tree.ListDirByPost();
+        }
+        public static void BinaryTreeTest(){
+           PostfixToExpressionTree postfix = new PostfixToExpressionTree();
+           postfix.TestPostfix();
+        }
+        public static void BinarySearchTreeDeleteTest(){
+            BinarySearchTree<int,int> tree = new BinarySearchTree<int, int>();
+            BinarySearchNode<int,int> root = new BinarySearchNode<int, int>();
+            var four = new BinarySearchNode<int, int>(){
+                Key = 4
+            };
+            var eight = new BinarySearchNode<int, int>(){
+                Key = 8
+            };
+            var two = new BinarySearchNode<int, int>(){
+                Key = 2
+            };
+            var one = new BinarySearchNode<int, int>(){
+                Key = 1
+            };
+            var three = new BinarySearchNode<int, int>(){
+                Key = 3
+            };
+            var five = new BinarySearchNode<int, int>(){
+                Key = 5
+            };
+            root.Key = 6;
+            root.Left = two;
+            root.Right = eight;
+            two.Left = one;
+            two.Right = five;
+            five.Left = three;
+            three.Right = four;
+
+            tree.SetRoot(root);
+            tree.Delete(2);
+            
         }
     #endregion
     }
