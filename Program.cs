@@ -43,8 +43,8 @@ namespace csharpDemo
             //树
             // DirectoryTreeTest();
             // BinaryTreeTest();
-            BinarySearchTreeDeleteTest();
-
+            // BinarySearchTreeDeleteTest();
+            AVLTreeTest();
 
 
             
@@ -331,6 +331,22 @@ namespace csharpDemo
             tree.SetRoot(root);
             tree.Delete(2);
             
+        }
+        public static void AVLTreeTest(){
+            AVLTree tree = new AVLTree();
+            tree.Insert(3);
+            tree.Insert(2);
+            tree.Insert(1);
+            tree.Insert(4);
+            tree.Insert(5);
+            tree.Insert(6);
+            tree.Insert(7);
+            for(int i = 16;i >= 10;i--){
+                tree.Insert(i);
+            }
+            tree.Insert(8);
+            tree.Insert(9);
+
         }
     #endregion
     }
