@@ -100,7 +100,7 @@ namespace csharpDemo.ADTImplement
             return center;
         }
         /// <summary>
-        /// 左右双旋转,情形2
+        /// 左右双旋转,情形2 左儿子的右子树插入
         /// </summary>
         /// <param name="node">不平衡的点</param>
         /// <returns>平衡后的点</returns>
@@ -114,7 +114,7 @@ namespace csharpDemo.ADTImplement
             return node;
         }
         /// <summary>
-        /// 右左旋转 情形3
+        /// 右左旋转 情形3 右儿子的左子树插入
         /// </summary>
         /// <param name="node">不平衡的点</param>
         /// <returns>平衡后的店</returns>

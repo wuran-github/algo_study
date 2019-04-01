@@ -44,8 +44,8 @@ namespace csharpDemo
             // DirectoryTreeTest();
             // BinaryTreeTest();
             // BinarySearchTreeDeleteTest();
-            AVLTreeTest();
-
+            // AVLTreeTest();
+            SplayTreeTest();
 
             
             watch.Stop();
@@ -347,6 +347,13 @@ namespace csharpDemo
             tree.Insert(8);
             tree.Insert(9);
 
+        }
+        public static void SplayTreeTest(){
+            SplayTree tree = new SplayTree();
+            for(int i = 7;i > 0 ;i--){
+                tree.Insert(i);
+            }
+            tree.Find(1);
         }
     #endregion
     }
