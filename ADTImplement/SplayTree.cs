@@ -114,20 +114,23 @@ namespace csharpDemo.ADTImplement
         /// <returns>旋转中心</returns>
         SplayNode SingleRotateLeft(SplayNode node)
         {
+            //存储node.parent的信息
+            var parent = node.Parent;
             //旋转中心是父节点的右节点
             var center = node.Right;
 
             //父节点的右节点 设为中心的左节点
             node.Right = center.Left;
-            if (node.Right != null)
-            {
-                node.Right.Parent = center;
-            }
+            // if (node.Right != null)
+            // {
+            //     node.Right.Parent = node;
+            // }
 
             //父节点成为中心的左节点
             center.Left = node;
-            center.Parent = node.Parent;
-            node.Parent = center;
+
+            center.Parent = parent;
+
             //中心节点成为根
             return center;
         }
@@ -138,19 +141,28 @@ namespace csharpDemo.ADTImplement
         /// <returns>旋转中心</returns>
         SplayNode SingleRotateRight(SplayNode node)
         {
+            //存储node.parent的信息
+            var parent = node.Parent;
+
             //旋转中心是父节点的左节点
             var center = node.Left;
 
             //父节点的左节点设为中心的右节点
             node.Left = center.Right;
-            if (node.Left != null)
-            {
-                node.Left.Parent = center;
-            }
+
+            
+            // if (node.Left != null)
+            // {
+            //     node.Left.Parent = node;
+            // }
+
             //父节点成为中心的右节点
             center.Right = node;
-            center.Parent = node.Parent;
-            node.Parent = center;
+
+            // center.Parent = node.Parent;
+            // node.Parent = center;
+
+            center.Parent = parent;
             //旋转中心成为根
             return center;
         }
@@ -186,6 +198,8 @@ namespace csharpDemo.ADTImplement
 
         SplayNode TranslateRightToLeft(SplayNode node)
         {
+            //只需要存储g的parent的信息
+            var top = node.Parent;
             var g = node;
             var p = g.Right;
             var x = p.Right;
@@ -195,15 +209,21 @@ namespace csharpDemo.ADTImplement
             temp = p.Left;
             p.Left = g;
             g.Right = temp;
+            
+            //自动设置了父节点，只需要设置x的父节点
+            x.Parent = top;
 
-            //父节点交换
-            x.Parent = g.Parent;
-            g.Parent = p;
-            p.Parent = x;
+            // //父节点交换
+            // x.Parent = g.Parent;
+            // g.Parent = p;
+            // p.Parent = x;
             return x;
         }
         SplayNode TranslateLeftToRight(SplayNode node)
         {
+            //只需要存储g的parent的信息
+            var top = node.Parent;
+
             var g = node;
             var p = g.Left;
             var x = p.Left;
@@ -214,12 +234,14 @@ namespace csharpDemo.ADTImplement
             p.Right = g;
             g.Left = temp;
 
-            //父节点交换
-            //自动实现了parent设置的时候设置parent的left和right了
-            x.Parent = g.Parent;
-            
-            g.Parent = p;
-            p.Parent = x;
+            //自动设置了父节点，只需要设置x的父节点
+            x.Parent = top;
+
+            // //父节点交换
+            // //自动实现了parent设置的时候设置parent的left和right了
+            // x.Parent = g.Parent;
+            // g.Parent = p;
+            // p.Parent = x;
             return x;
         }
 

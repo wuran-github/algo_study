@@ -354,6 +354,7 @@ namespace csharpDemo
                 tree.Insert(i);
             }
             tree.Find(1);
+            tree.Find(3);
         }
     #endregion
     }
