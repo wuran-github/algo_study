@@ -45,8 +45,8 @@ namespace csharpDemo
             // BinaryTreeTest();
             // BinarySearchTreeDeleteTest();
             // AVLTreeTest();
-            SplayTreeTest();
-
+            // SplayTreeTest();
+            BPlusTreeTest();
             
             watch.Stop();
             // after = DateTime.Now.Millisecond;
@@ -355,6 +355,14 @@ namespace csharpDemo
             }
             tree.Find(1);
             tree.Find(3);
+        }
+        public static void BPlusTreeTest(){
+            BPlusTree tree = new BPlusTree(3);
+            int[] datas = {8,11,12,16,17,22,23,31,41,52,58,59,61};
+            
+            foreach(int num in datas){
+                tree.Insert(num);
+            }
         }
     #endregion
     }
