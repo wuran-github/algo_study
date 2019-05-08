@@ -9,6 +9,7 @@ namespace HeapLearn{
         T FindMin();
          bool IsEmpty();
          void makeEmpty();
+         int Count{get;}
     }
     public class BinomialQueue<T> where T:IComparable<T> {
         private Node[] queue;
@@ -191,7 +192,7 @@ namespace HeapLearn{
             
         }
     }
-    public class BinomialQueue2<T> : IBinomialQueue<T> where T : IComparable<T>
+    public class BinomialQueue2<T> where T : IComparable<T>
     {
         private int currentSize;
         private Node[] trees;
@@ -204,11 +205,36 @@ namespace HeapLearn{
             trees[0] = node;
             currentSize = 1;
         }
+
+        public int Count => currentSize;
+
         public T FindMin()
         {
-            throw new NotImplementedException();
+            int index = FindMinIndex();
+            return trees[index].Value;
         }
-
+        public T DeleteMin(){
+            int index = FindMinIndex();
+            var node = trees[index];
+            trees[index] = null;
+            BinomialQueue2<T> newQueue = new BinomialQueue2<T>();
+            //第k个节点有k-1个子节点,由于节点存放是从大到小的，所以反向遍历
+            var child = node.FirstChild;
+            for (int i = index - 1; i >= 0; i--)
+            {
+                newQueue.trees[i] = child;
+                child = child.NextSibling;
+                newQueue.trees[i].NextSibling = null;
+            }
+            newQueue.currentSize = index;
+            //如果是最后一棵树，那么树被删除根放到另外一个二项队列里了
+            //所以现在只有currentSize -1 棵树
+            if(index == Count - 1){
+                currentSize--;
+            }
+            Merge(newQueue);
+            return node.Value;
+        }
         public void Insert(T value)
         {
             Merge(new BinomialQueue2<T>(value));
@@ -228,13 +254,64 @@ namespace HeapLearn{
             currentSize = 0;
         }
 
-        public void Merge(IBinomialQueue<T> other)
+        public void Merge(BinomialQueue2<T> other)
         {
             if(this == other){
                 return;
             }
-
-            
+            Node carry = null;
+            int maxIndex = Math.Max(Count, other.Count);
+            for (int i = 0; i < maxIndex; i++)
+            {
+                Node newNode = null;
+                Node t1 = this.trees[i];
+                Node t2 = other.trees[i];
+                Node[] nodes = MergeTrees(t1,t2);
+                //t1 t2均为Null 或者均有值
+                //当前节点可以直接设为上一次增加的节点
+                if(nodes[0] == null){
+                    newNode = carry;
+                    carry = nodes[1];
+                }else{//如果有值，必然nodes[1]无值
+                    //如果carry不为空，就合并，否则就返回nodes[0]
+                    nodes = MergeTrees(nodes[0],carry);
+                    newNode = nodes[0];
+                    carry = nodes[1];
+                }
+                trees[i] = newNode;
+                //顺便清空other
+                other.trees[i] = null;
+            }
+            //加一
+            if(carry!=null){
+                trees[maxIndex] = carry;
+                this.currentSize = maxIndex+1;
+            }
+            other.currentSize = 0;
+        }
+        private int FindMinIndex(){
+            if(IsEmpty()){
+                throw new Exception("queue is Empty");
+            }
+            Node minNode = trees[0];
+            int minIndex = 0;
+            for (int i = 0; i < Count; i++)
+            {
+                var node = trees[i];
+                if(node != null){
+                    if(minNode == null){
+                        minNode = node;
+                        minIndex = i;
+                    }
+                    else{
+                        if(minNode.Value.CompareTo(node.Value) > 0){
+                            minNode = node;
+                            minIndex = i;
+                        }
+                    }
+                }
+            }
+            return minIndex;
         }
         /// <summary>
         /// 大的节点成为小的第一个儿子，会自动转换大小
