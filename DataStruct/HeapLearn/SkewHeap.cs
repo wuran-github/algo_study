@@ -2,10 +2,11 @@ using System;
 
 namespace HeapLearn
 {
-    public class LeftHeap<T> where T : IComparable<T>
+
+    public class SkewHeap<T> where T : IComparable<T>
     {
         Node root;
-        public LeftHeap()
+        public SkewHeap()
         {
             root = null;
         }
@@ -14,7 +15,7 @@ namespace HeapLearn
             Node node = new Node(value);
             root = MergeHeap(root, node);
         }
-        public void Merge(LeftHeap<T> other)
+        public void Merge(SkewHeap<T> other)
         {
             if (this == other)
             {
@@ -78,57 +79,21 @@ namespace HeapLearn
             }
             small.Right = MergeHeap(small.Right, big);
             //change
-            if (!CheckNpl(small.Left, small.Right))
-            {
-                var temp = small.Left;
-                small.Left = small.Right;
-                small.Right = temp;
-            }
-            small.Npl = GetNpl(small.Right) + 1;
+            var temp = small.Left;
+            small.Left = small.Right;
+            small.Right = temp;
             return small;
-        }
-        //没有必要
-        private int GetNpl(Node node)
-        {
-            if (node == null)
-            {
-                return -1;
-            }
-            return node.Npl;
-        }
-        private bool CheckNpl(Node left, Node right)
-        {
-            return GetNpl(left) >= GetNpl(right);
         }
         private sealed class Node
         {
-            public int Npl { get; set; }
             public Node Left { get; set; }
             public Node Right { get; set; }
             public T Value { get; set; }
             public Node(T value)
             {
                 Value = value;
-                Npl = 0;
-            }
-            public void UpdateNpl()
-            {
-                BuildNpl(this);
-            }
-
-            private int BuildNpl(Node node)
-            {
-                if (node == null)
-                {
-                    return -1;
-                }
-                var leftNpl = BuildNpl(node.Left);
-                var rightNpl = BuildNpl(node.Right);
-
-                // node.npl = (leftNpl > rightNpl?rightNpl:leftNpl)+1;
-                node.Npl = Math.Min(leftNpl, rightNpl) + 1;
-                return node.Npl;
             }
         }
     }
+
 }

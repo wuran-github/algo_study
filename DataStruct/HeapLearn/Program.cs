@@ -9,8 +9,12 @@ namespace HeapLearn
             // HeapTest();
             // SelectionProblemTest(4);
             // SelectionProblemBtest(4);
-            QueueUpEventMockTest();
+            // QueueUpEventMockTest();
+            // LeftHeapTest();
+            // SkewHeapTest();
+            BinomialQueueTest();
         }
+        #region Heap
         static void HeapTest(){
             IHeap heap = new Heap(15);
             int[] testArray = {13,14,16,19,21,19,68,65,26,32,31};
@@ -51,6 +55,46 @@ namespace HeapLearn
         static void QueueUpEventMockTest(){
             EventMock mock = new EventMock();
             mock.BeginMock();
+        }
+        #endregion
+        static void LeftHeapTest(){
+            int[] values = {3,10,8,21,14,23,17,26};
+            int[] values2 = {37,33,24,18,18,12,7,6};
+            LeftHeap<int> heap1 = new LeftHeap<int>();
+            LeftHeap<int> heap2 = new LeftHeap<int>();
+            foreach (var v in values)
+            {
+                heap1.Add(v);
+            }
+            foreach (var v in values2)
+            {
+                heap2.Add(v);
+            }
+            heap1.Merge(heap2);
+        }
+        static void SkewHeapTest(){
+            int[] values = {3,10,8,21,14,23,17,26};
+            int[] values2 = {37,33,24,18,18,12,7,6};
+            SkewHeap<int> heap1 = new SkewHeap<int>();
+            SkewHeap<int> heap2 = new SkewHeap<int>();
+            foreach (var v in values)
+            {
+                heap1.Add(v);
+            }
+            foreach (var v in values2)
+            {
+                heap2.Add(v);
+            }
+            heap1.Merge(heap2);
+        }
+        static void BinomialQueueTest(){
+            int[] datas = {13,23,51,24,65,12,21,24,65,14,26,16,18};
+            BinomialQueue<int> bQueue = new BinomialQueue<int>();
+            foreach (var data in datas)
+            {
+                bQueue.Add(data);
+            }
+            bQueue.DeleteMin();
         }
     }
 }
