@@ -17,7 +17,7 @@ namespace Sort{
             }
             this.hibbard = hibbard.ToArray();
         }
-        public void Sort(T[] array)
+        public T[] Sort(T[] array)
         {
             
             count = 0;
@@ -44,6 +44,7 @@ namespace Sort{
                     array[j] = temp;
                 }
             }
+            return array;
             
         }
     }

@@ -8,7 +8,7 @@ namespace Sort{
         public int Count => count;
         //从小到小排序
         //从大到大改变一些堆的有序性即可，这里就不改了
-        public void Sort(T[] array)
+        public T[] Sort(T[] array)
         {
             Heap<T> heap = new Heap<T>();
             heap.BuildHeap(array);
@@ -16,6 +16,7 @@ namespace Sort{
             {
                 array[i] = heap.DeleteMin();
             }
+            return array;
         }
 
     }

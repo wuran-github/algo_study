@@ -7,7 +7,7 @@ namespace Sort{
         int count = 0;
         public int Count => count;
         
-        public void Sort(T[] array)
+        public T[] Sort(T[] array)
         {
             // //因为返回的是新的对象，而不是改变原来的对象
             // T[] temp = array.ToArray();
@@ -25,6 +25,7 @@ namespace Sort{
             // MergeArray2(array,0,array.Length - 1);
             MergeArray2(array,temp,0,array.Length - 1);
             #endregion
+            return array;
         }
         #region 更好的想法直到最后才创建数组
         //

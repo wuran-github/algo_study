@@ -20,7 +20,19 @@ namespace Sort
             // ShellSortTest();
             // HeapSortTest();
             // MergeSortTest();
-            QuickSortTest();
+            // QuickSortTest();
+            // RadixSortTest();
+            OuterSortTest();
+        }
+        static void OuterSortTest(){
+            List<int> datas = new List<int>();
+            for (int i = 50; i > 0; i--)
+            {
+                datas.Add(i);
+            }
+            sorter = new OuterSort();
+            var res = sorter.Sort(datas.ToArray());
+            Print(res);
         }
         static void InsertionSortTest(){
             int[] datas = ints.ToArray();
@@ -58,7 +70,12 @@ namespace Sort
             sorter.Sort(datas);
             Print(datas);
         }
-
+        static void RadixSortTest(){
+            int[] datas = ints2.ToArray();
+            sorter = new RadixSort();
+            sorter.Sort(datas);
+            Print(((RadixSort)sorter).data);
+        }
         #region auxiliary method
         static bool Assert(int[] array){
            return sorted.Except(array).Count() == 0;

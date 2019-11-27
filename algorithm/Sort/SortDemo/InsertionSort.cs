@@ -8,7 +8,7 @@ namespace Sort{
 
         public int Count => count;
 
-        public void Sort(T[] array)
+        public T[] Sort(T[] array)
         {
             count = 0;
             T temp = default(T);
@@ -29,6 +29,7 @@ namespace Sort{
                 array[j+1] = temp;
 
             }
+            return array;
         }
     }
 

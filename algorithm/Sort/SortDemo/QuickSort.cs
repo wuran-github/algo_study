@@ -9,12 +9,13 @@ namespace Sort{
         int count = 0;
         public int Count => count;
 
-        public void Sort(T[] array)
+        public T[] Sort(T[] array)
         {
             // var list = array.ToList();
             // SimplySort(list);
             // list.CopyTo(array);
             QuickSortArray(array,0, array.Length -1);
+            return array;
         }
 
         /// <summary>
